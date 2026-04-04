@@ -1,24 +1,24 @@
 # Email-Spam-Detection
 An NLP based predictive analytics project
-# 📧 Email Spam Detection using NLP & Machine Learning
+#  Email Spam Detection using NLP & Machine Learning
 
-## 📌 Project Overview
+##  Project Overview
 
 This project focuses on building an **Email Spam Detection System** using **Natural Language Processing (NLP)** and **Machine Learning** techniques.
 The model classifies emails as **Spam** or **Ham (Not Spam)** based on their content.
 
 ---
 
-## 🚀 Features
+##  Features
 
-* 📊 Data preprocessing and cleaning
-* 🔤 Text vectorization (TF-IDF)
-* 🤖 Machine Learning models for classification
-* 📈 Performance evaluation (Accuracy, Precision, Recall)
+* Data preprocessing and cleaning
+* Text vectorization (TF-IDF)
+* Machine Learning models for classification
+* Performance evaluation (Accuracy, Precision, Recall)
 
 ---
 
-## 🗂️ Project Structure
+##  Project Structure
 
 ```
 Email-Spam-Detection/
@@ -31,14 +31,14 @@ Email-Spam-Detection/
 
 ---
 
-## 📥 Dataset
+##  Dataset
 
 The dataset is not included in this repository due to size limitations.
 
-👉 Download it from:
+Download it from:
 https://www.kaggle.com/datasets/nikhilchaudhary7108/spam-email-datasetenron-trec-and-others
 
-### 📌 Steps:
+### Steps:
 
 1. Download the dataset from the link above
 2. Extract the files
@@ -50,22 +50,22 @@ emaildata set/
 
 ---
 
-## ⚙️ Installation & Setup
+##  Installation & Setup
 
-### 1️⃣ Clone the repository
+### 1️ Clone the repository
 
 ```bash
 git clone https://github.com/Khaisekabeer/Email-Spam-Detection.git
 cd Email-Spam-Detection
 ```
 
-### 2️⃣ Install required libraries
+### 2️ Install required libraries
 
 ```bash
 pip install pandas numpy scikit-learn nltk
 ```
 
-### 3️⃣ Run the project
+### 3️ Run the project
 
 Open the notebook:
 
@@ -75,9 +75,9 @@ jupyter notebook Data.ipynb
 
 ---
 
-## 🧠 Technologies Used
+##  Technologies Used
 
-* Python 🐍
+* Python 
 * Pandas
 * NumPy
 * Scikit-learn
@@ -85,7 +85,7 @@ jupyter notebook Data.ipynb
 
 ---
 
-## 📊 Model Workflow
+##  Model Workflow
 
 1. Load dataset
 2. Clean and preprocess text
@@ -95,7 +95,7 @@ jupyter notebook Data.ipynb
 
 ---
 
-## 📈 Future Improvements
+##  Future Improvements
 
 * Use Deep Learning (LSTM, BERT)
 * Improve accuracy with advanced preprocessing
@@ -103,12 +103,12 @@ jupyter notebook Data.ipynb
 
 ---
 
-## 👨‍💻 Author
+##  Author
 
 **Khaisekabeer**
 
 ---
 
-## ⭐ If you like this project
+##  If you like this project
 
-Give it a star ⭐ on GitHub!
+Give it a star  on GitHub!
