@@ -1,0 +1,13 @@
+# Email Spam Detection project dependencies
+# Install with: pip install -r requirements.txt
+
+pandas
+numpy
+scikit-learn
+nltk
+matplotlib
+seaborn
+jupyter
+datasets
+wordcloud
+tensorflow
