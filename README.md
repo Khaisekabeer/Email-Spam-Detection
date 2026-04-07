@@ -1,14 +1,14 @@
-# 🛡️ GuardianAI | Email Spam Classification System
+#  | Email Spam Classification System
 
 A comprehensive, production-ready **Email Spam Detection System** featuring multiple classification models (**Naive Bayes, SVM, and LSTM**) integrated into a premium **Streamlit** web application.
 
 ---
 
-## 🌟 Overview
+##  Overview
 
 GuardianAI leverages advanced **Natural Language Processing (NLP)** and **Machine Learning** to protect your inbox. By integrating traditional statistical models with deep learning architectures, it provides a robust, multi-layered approach to spam detection.
 
-### 🧠 Integrated Models
+### Integrated Models
 
 1.  **Multinomial Naive Bayes (Fast)**: A classic probabilistic model known for its speed and effectiveness in word-based filtering.
 2.  **Linear SVM (High Precision)**: A powerful Support Vector Machine model optimized for high-dimensional text data.
@@ -16,23 +16,23 @@ GuardianAI leverages advanced **Natural Language Processing (NLP)** and **Machin
 
 ---
 
-## 📁 Project Structure
+##  Project Structure
 
 ```text
 Email-Spam-Detection/
-├── models/                     # 🧠 Saved Model Artifacts (.joblib, .h5)
-├── app.py                      # 🚀 Premium Streamlit Web Application
-├── train_nb.py                 # 🧪 Naive Bayes Training Script
-├── requirements.txt            # 📦 Project Dependencies
-├── Untitled49.ipynb            # 🔬 LSTM Experimental Lab
-└── Email-Spam-Detector.ipynb   # 🔬 SVM Experimental Lab
+├── models/                     
+├── app.py                      
+├── train_nb.py                 
+├── requirements.
+├── Untitled49.ipynb            
+└── Email-Spam-Detector.ipynb   
 ```
 
 ---
 
-## 🚀 Getting Started
+## Getting Started
 
-### 1️⃣ Installation
+### 1 Installation
 Clone the repository and install the necessary dependencies:
 
 ```bash
@@ -41,7 +41,7 @@ cd Email-Spam-Detection
 pip install -r requirements.txt
 ```
 
-### 2️⃣ Model Preparation
+### 2Model Preparation
 A unified training pipeline has been implemented to train all three models (Naive Bayes, SVM, and LSTM) using the **Enron Email Dataset**. This ensures consistent preprocessing and feature extraction across all models.
 
 Run the following command to train all models:
@@ -57,7 +57,7 @@ This will:
 4.  **Evaluate** each model with accuracy, F1 score, and confusion matrices.
 5.  **Save** all model artifacts to the `models/` folder and confusion matrix plots to `plots/`.
 
-### 3️⃣ Launch the App
+### 3Launch the App
 Run the Streamlit application to start classifying emails:
 
 ```bash
@@ -66,7 +66,7 @@ streamlit run app.py
 
 ---
 
-## 🧪 Technologies Used
+##  Technologies Used
 
 *   **Python**: Core programming language.
 *   **NLP Tools**: NLTK (Stopwords, Stemming).
@@ -77,11 +77,11 @@ streamlit run app.py
 
 ---
 
-## 👨‍💻 Author
+##  Author
 
 **Khaisekabeer**
 
 ---
 
-## ⭐ Support the Project
-If you find this project helpful, give it a star on GitHub! 🌟
+## Support the Project
+If you find this project helpful, give it a star on GitHub! 
