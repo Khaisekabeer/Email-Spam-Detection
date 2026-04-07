@@ -1,114 +1,87 @@
-# Email-Spam-Detection
-An NLP based predictive analytics project
-#  Email Spam Detection using NLP & Machine Learning
+# 🛡️ GuardianAI | Email Spam Classification System
 
-##  Project Overview
-
-This project focuses on building an **Email Spam Detection System** using **Natural Language Processing (NLP)** and **Machine Learning** techniques.
-The model classifies emails as **Spam** or **Ham (Not Spam)** based on their content.
+A comprehensive, production-ready **Email Spam Detection System** featuring multiple classification models (**Naive Bayes, SVM, and LSTM**) integrated into a premium **Streamlit** web application.
 
 ---
 
-##  Features
+## 🌟 Overview
 
-* Data preprocessing and cleaning
-* Text vectorization (TF-IDF)
-* Machine Learning models for classification
-* Performance evaluation (Accuracy, Precision, Recall)
+GuardianAI leverages advanced **Natural Language Processing (NLP)** and **Machine Learning** to protect your inbox. By integrating traditional statistical models with deep learning architectures, it provides a robust, multi-layered approach to spam detection.
+
+### 🧠 Integrated Models
+
+1.  **Multinomial Naive Bayes (Fast)**: A classic probabilistic model known for its speed and effectiveness in word-based filtering.
+2.  **Linear SVM (High Precision)**: A powerful Support Vector Machine model optimized for high-dimensional text data.
+3.  **Bidirectional LSTM (Deep Analytics)**: A deep learning architecture using Long Short-Term Memory units to understand the sequential context and linguistic flow of emails.
 
 ---
 
-##  Project Structure
+## 📁 Project Structure
 
-```
+```text
 Email-Spam-Detection/
-│
-├── Data.ipynb                  # Main notebook
-├── .gitignore                  # Ignore dataset & unnecessary files
-├── README.md                   # Project documentation
-└── emaildata set/              # Dataset folder (not included in repo)
+├── models/                     # 🧠 Saved Model Artifacts (.joblib, .h5)
+├── app.py                      # 🚀 Premium Streamlit Web Application
+├── train_nb.py                 # 🧪 Naive Bayes Training Script
+├── requirements.txt            # 📦 Project Dependencies
+├── Untitled49.ipynb            # 🔬 LSTM Experimental Lab
+└── Email-Spam-Detector.ipynb   # 🔬 SVM Experimental Lab
 ```
 
 ---
 
-##  Dataset
+## 🚀 Getting Started
 
-The dataset is not included in this repository due to size limitations.
-
-Download it from:
-https://www.kaggle.com/datasets/nikhilchaudhary7108/spam-email-datasetenron-trec-and-others
-
-### Steps:
-
-1. Download the dataset from the link above
-2. Extract the files
-3. Place the dataset inside the folder:
-
-```
-emaildata set/
-```
-
----
-
-##  Installation & Setup
-
-### 1️ Clone the repository
+### 1️⃣ Installation
+Clone the repository and install the necessary dependencies:
 
 ```bash
 git clone https://github.com/Khaisekabeer/Email-Spam-Detection.git
 cd Email-Spam-Detection
+pip install -r requirements.txt
 ```
 
-### 2️ Install required libraries
+### 2️⃣ Model Preparation
+A unified training pipeline has been implemented to train all three models (Naive Bayes, SVM, and LSTM) using the **Enron Email Dataset**. This ensures consistent preprocessing and feature extraction across all models.
+
+Run the following command to train all models:
 
 ```bash
-pip install pandas numpy scikit-learn nltk
+python train_all_models.py
 ```
 
-### 3️ Run the project
+This will:
+1.  **Load** the Enron dataset from Hugging Face.
+2.  **Preprocess** the text (Cleaning, Tokenization, Stopword removal, Lemmatization).
+3.  **Train** Naive Bayes, SVM (with calibrated probabilities), and Bidirectional LSTM models.
+4.  **Evaluate** each model with accuracy, F1 score, and confusion matrices.
+5.  **Save** all model artifacts to the `models/` folder and confusion matrix plots to `plots/`.
 
-Open the notebook:
+### 3️⃣ Launch the App
+Run the Streamlit application to start classifying emails:
 
 ```bash
-jupyter notebook Data.ipynb
+streamlit run app.py
 ```
 
 ---
 
-##  Technologies Used
+## 🧪 Technologies Used
 
-* Python 
-* Pandas
-* NumPy
-* Scikit-learn
-* NLP techniques
-
----
-
-##  Model Workflow
-
-1. Load dataset
-2. Clean and preprocess text
-3. Convert text into numerical features (TF-IDF)
-4. Train machine learning model
-5. Evaluate performance
+*   **Python**: Core programming language.
+*   **NLP Tools**: NLTK (Stopwords, Stemming).
+*   **Machine Learning**: Scikit-Learn (NB, SVM, TF-IDF).
+*   **Deep Learning**: TensorFlow & Keras (Bidirectional LSTM).
+*   **Web Framework**: Streamlit (Premium UI with Custom CSS).
+*   **Data Handling**: Pandas, NumPy.
 
 ---
 
-##  Future Improvements
-
-* Use Deep Learning (LSTM, BERT)
-* Improve accuracy with advanced preprocessing
-* Deploy as a web application
-
----
-
-##  Author
+## 👨‍💻 Author
 
 **Khaisekabeer**
 
 ---
 
-##  If you like this project
-
-Give it a star  on GitHub!
+## ⭐ Support the Project
+If you find this project helpful, give it a star on GitHub! 🌟

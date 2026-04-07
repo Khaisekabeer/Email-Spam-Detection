@@ -5,6 +5,11 @@ pandas
 numpy
 scikit-learn
 nltk
+datasets
+tensorflow
+streamlit
+joblib
+psutil
 matplotlib
 seaborn
 jupyter
