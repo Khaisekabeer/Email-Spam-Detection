@@ -20,6 +20,26 @@ nltk.download('omw-1.4', quiet=True)
 lemmatizer = WordNetLemmatizer()
 stop_words = set(stopwords.words('english'))
 
+# --- LSTM Architecture (Must match training) ---
+def create_lstm_model():
+    VOCAB_SIZE = 10000
+    MAX_LEN = 150
+    EMBED_DIM = 64
+    
+    from tensorflow.keras.models import Sequential
+    from tensorflow.keras.layers import Embedding, LSTM, Dense, Dropout, Bidirectional, SpatialDropout1D
+    
+    model = Sequential([
+        Embedding(VOCAB_SIZE, EMBED_DIM, input_length=MAX_LEN),
+        SpatialDropout1D(0.3),
+        Bidirectional(LSTM(64, return_sequences=True, dropout=0.2, recurrent_dropout=0.2)),
+        Bidirectional(LSTM(32, dropout=0.2, recurrent_dropout=0.2)),
+        Dense(32, activation='relu'),
+        Dropout(0.4),
+        Dense(1, activation='sigmoid')
+    ])
+    return model
+
 def preprocess(text: str) -> str:
     if not isinstance(text, str):
         return ""
@@ -93,7 +113,9 @@ def load_assets():
         svm_model = joblib.load('models/svm_model.joblib')
         svm_vectorizer = joblib.load('models/svm_vectorizer.joblib')
         
-        lstm_model = tf.keras.models.load_model('models/lstm_model.h5')
+        # Load LSTM via weights for cross-version stability
+        lstm_model = create_lstm_model()
+        lstm_model.load_weights('models/lstm_weights.weights.h5')
         lstm_tokenizer = joblib.load('models/lstm_tokenizer.joblib')
         
         return {
