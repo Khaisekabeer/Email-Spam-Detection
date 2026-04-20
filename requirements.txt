@@ -1,9 +1,6 @@
-# Email Spam Detection runtime dependencies
-# Stabilized for Streamlit Cloud deployment (Python 3.11 compatible)
-
-streamlit>=1.30.0
+streamlit
 numpy<2.0.0
-scikit-learn>=1.2.0
+scikit-learn
 nltk
 tensorflow-cpu==2.15.0
 joblib
