@@ -20,12 +20,13 @@ GuardianAI leverages advanced **Natural Language Processing (NLP)** and **Machin
 
 ```text
 Email-Spam-Detection/
-├── models/                     
-├── app.py                      
-├── train_nb.py                 
-├── requirements.
-├── Untitled49.ipynb            
-└── Email-Spam-Detector.ipynb   
+├── models/                     # Trained model artifacts
+├── app.py                      # Main Streamlit application
+├── train_nb.py                 # Naive Bayes training script
+├── train_svm.py                # SVM training script
+├── train_lstm.py               # LSTM training script
+├── requirements.txt            # Project dependencies
+└── README.md                   # Project documentation
 ```
 
 ---
@@ -41,13 +42,20 @@ cd Email-Spam-Detection
 pip install -r requirements.txt
 ```
 
-### 2Model Preparation
-A unified training pipeline has been implemented to train all three models (Naive Bayes, SVM, and LSTM) using the **Enron Email Dataset**. This ensures consistent preprocessing and feature extraction across all models.
+### 2 Model Preparation
+The training pipeline is split into modular scripts to allow independent training and deployment of each model.
 
-Run the following command to train all models:
+To train the models, run the following commands:
 
 ```bash
-python train_all_models.py
+# Train Naive Bayes (Fast)
+python train_nb.py
+
+# Train SVM (High Precision)
+python train_svm.py
+
+# Train LSTM (Deep Analytics)
+python train_lstm.py
 ```
 
 This will:
@@ -64,6 +72,21 @@ Run the Streamlit application to start classifying emails:
 streamlit run app.py
 ```
 
+### 4 Deploy to Streamlit Cloud
+1. Commit your code and ensure the `models/` folder is included with all required artifacts:
+   - `models/nb_model.joblib`
+   - `models/nb_vectorizer.joblib`
+   - `models/svm_model.joblib`
+   - `models/svm_vectorizer.joblib`
+   - `models/lstm_model.h5`
+   - `models/lstm_tokenizer.joblib`
+2. Push the repository to GitHub.
+3. Go to https://streamlit.io/cloud and connect your GitHub account.
+4. Create a new app using this repository, branch `main`, and file path `app.py`.
+5. Use the existing `.streamlit/config.toml` settings if available.
+
+> Note: The app must have the model files available at runtime. If the models are not present in the repo, deployment will fail.
+
 ---
 
 ##  Technologies Used
@@ -77,11 +100,6 @@ streamlit run app.py
 
 ---
 
-##  Author
-
-**Khaisekabeer**
-
----
 
 ## Support the Project
 If you find this project helpful, give it a star on GitHub! 

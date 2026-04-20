@@ -1,8 +1,7 @@
 import os
-import pandas as pd
-import numpy as np
 import re
 import joblib
+import pandas as pd
 import nltk
 from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
@@ -12,47 +11,59 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.metrics import classification_report, accuracy_score
 
-# Download NLTK resources
-nltk.download('stopwords')
-nltk.download('wordnet')
-nltk.download('omw-1.4')
+# --- Configuration ---
+MODELS_DIR = 'models'
 
-def clean_text(text):
-    text = str(text).lower()
-    text = re.sub(r'http\S+|www\S+|https\S+', '', text)
-    text = re.sub(r'<.*?>', '', text)
-    text = re.sub(r'[^a-zA-Z\s]', '', text)
-    stop_words = set(stopwords.words('english'))
-    lemmatizer = WordNetLemmatizer()
-    words = text.split()
-    words = [lemmatizer.lemmatize(word) for word in words if word not in stop_words]
-    return ' '.join(words)
+# --- Setup ---
+nltk.download('stopwords', quiet=True)
+nltk.download('wordnet', quiet=True)
+nltk.download('omw-1.4', quiet=True)
+
+lemmatizer = WordNetLemmatizer()
+stop_words = set(stopwords.words('english'))
+
+def preprocess(text: str) -> str:
+    if not isinstance(text, str):
+        return ""
+    text = text.lower()
+    # Remove URLs
+    text = re.sub(r'http\S+|www\S+|https\S+', '', text, flags=re.MULTILINE)
+    # Remove emails
+    text = re.sub(r'\S+@\S+', '', text)
+    # Remove non-alphabetical characters
+    text = re.sub(r'[^a-z\s]', '', text)
+    tokens = text.split()
+    # Lemmatize and remove stop words (skip single characters)
+    tokens = [lemmatizer.lemmatize(t) for t in tokens if t not in stop_words and len(t) > 1]
+    return ' '.join(tokens)
 
 if __name__ == "__main__":
-    print("--- Training Naive Bayes Model ---")
+    if not os.path.exists(MODELS_DIR):
+        os.makedirs(MODELS_DIR)
+        
+    print("--- Training Naive Bayes ---")
     print("Loading dataset...")
     raw_dataset = load_dataset("SetFit/enron_spam")
     df = pd.DataFrame(raw_dataset['train'])
     
     print("Preprocessing text...")
-    df['clean_text'] = df['text'].apply(clean_text)
+    df['clean_text'] = df['text'].apply(preprocess)
     
     X_train, X_test, y_train, y_test = train_test_split(df['clean_text'], df['label'], test_size=0.2, random_state=42)
     
-    tfidf = TfidfVectorizer(max_features=5000)
-    X_train_tfidf = tfidf.fit_transform(X_train)
-    X_test_tfidf = tfidf.transform(X_test)
+    vectorizer = TfidfVectorizer(max_features=5000)
+    X_train_tfidf = vectorizer.fit_transform(X_train)
+    X_test_tfidf = vectorizer.transform(X_test)
     
+    print("Training Naive Bayes model...")
     nb_model = MultinomialNB()
     nb_model.fit(X_train_tfidf, y_train)
     
-    preds = nb_model.predict(X_test_tfidf)
-    print(f"Naive Bayes Accuracy: {accuracy_score(y_test, preds):.4f}")
-    print(classification_report(y_test, preds))
+    nb_preds = nb_model.predict(X_test_tfidf)
+    print(f"NB Accuracy: {accuracy_score(y_test, nb_preds):.4f}")
+    print(classification_report(y_test, nb_preds))
     
-    if not os.path.exists('models'):
-        os.makedirs('models')
-        
-    joblib.dump(tfidf, 'models/nb_vectorizer.joblib')
-    joblib.dump(nb_model, 'models/nb_model.joblib')
-    print("\nModel saved as models/nb_model.joblib")
+    # Save
+    joblib.dump(nb_model, os.path.join(MODELS_DIR, 'nb_model.joblib'))
+    joblib.dump(vectorizer, os.path.join(MODELS_DIR, 'nb_vectorizer.joblib'))
+    print(f"Naive Bayes model and vectorizer saved in '{MODELS_DIR}' directory.")

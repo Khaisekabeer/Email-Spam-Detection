@@ -102,7 +102,7 @@ def load_assets():
             "LSTM": (lstm_model, lstm_tokenizer)
         }
     except Exception as e:
-        st.error(f"Error loading models: {e}. Please ensure you have run train.py first.")
+        st.error(f"Error loading models: {e}. Please ensure you have run the training scripts (train_nb.py, train_svm.py, train_lstm.py) first.")
         return None
 
 assets = load_assets()

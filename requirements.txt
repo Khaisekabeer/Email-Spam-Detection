@@ -1,18 +1,10 @@
-# Email Spam Detection project dependencies
+# Email Spam Detection runtime dependencies
 # Install with: pip install -r requirements.txt
 
-pandas
+streamlit
 numpy
 scikit-learn
 nltk
-datasets
 tensorflow
-streamlit
 joblib
-psutil
-matplotlib
-seaborn
-jupyter
 datasets
-wordcloud
-tensorflow
