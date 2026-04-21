@@ -9,6 +9,8 @@ from nltk.corpus import stopwords
 from nltk.stem import PorterStemmer
 import tensorflow as tf
 from tensorflow.keras.preprocessing.sequence import pad_sequences
+from tensorflow.keras.preprocessing.text import tokenizer_from_json
+import json
 import time
 
 # --- Setup & Preprocessing ---
@@ -113,11 +115,14 @@ def load_assets():
         svm_model = joblib.load('models/svm_model.joblib')
         svm_vectorizer = joblib.load('models/svm_vectorizer.joblib')
         
-        # Load LSTM via raw NumPy weights for absolute cross-version stability
+        # Load LSTM via raw NumPy weights and JSON tokenizer for absolute cross-version stability
         lstm_model = create_lstm_model()
         lstm_weights = joblib.load('models/lstm_weights.joblib')
         lstm_model.set_weights(lstm_weights)
-        lstm_tokenizer = joblib.load('models/lstm_tokenizer.joblib')
+        
+        with open('models/lstm_tokenizer.json', 'r') as f:
+            tokenizer_json = json.load(f)
+            lstm_tokenizer = tokenizer_from_json(tokenizer_json)
         
         return {
             "NB": (nb_model, nb_vectorizer),

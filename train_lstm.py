@@ -81,14 +81,19 @@ if __name__ == "__main__":
     
     model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
     
-    print("Starting LSTM training (3 epochs for speed)...")
-    model.fit(X_train_pad, y_train, epochs=3, batch_size=32, validation_split=0.1, verbose=1)
+    print("Starting LSTM training (1 epoch for speed)...")
+    model.fit(X_train_pad, y_train, epochs=1, batch_size=32, validation_split=0.1, verbose=1)
     
     loss, acc = model.evaluate(X_test_pad, y_test)
     print(f"LSTM Accuracy: {acc:.4f}")
     
-    # Save weights as a NumPy list for maximum cross-version compatibility
+    # Save raw weights and JSON tokenizer for maximum cross-version compatibility
     weights = model.get_weights()
     joblib.dump(weights, os.path.join(MODELS_DIR, 'lstm_weights.joblib'))
-    joblib.dump(tokenizer, os.path.join(MODELS_DIR, 'lstm_tokenizer.joblib'))
-    print(f"LSTM raw weights and tokenizer saved in '{MODELS_DIR}' directory.")
+    
+    import json
+    tokenizer_json = tokenizer.to_json()
+    with open(os.path.join(MODELS_DIR, 'lstm_tokenizer.json'), 'w') as f:
+        json.dump(tokenizer_json, f)
+        
+    print(f"LSTM raw weights and JSON tokenizer saved in '{MODELS_DIR}' directory.")
