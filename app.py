@@ -113,9 +113,10 @@ def load_assets():
         svm_model = joblib.load('models/svm_model.joblib')
         svm_vectorizer = joblib.load('models/svm_vectorizer.joblib')
         
-        # Load LSTM via weights for cross-version stability
+        # Load LSTM via raw NumPy weights for absolute cross-version stability
         lstm_model = create_lstm_model()
-        lstm_model.load_weights('models/lstm_weights.weights.h5')
+        lstm_weights = joblib.load('models/lstm_weights.joblib')
+        lstm_model.set_weights(lstm_weights)
         lstm_tokenizer = joblib.load('models/lstm_tokenizer.joblib')
         
         return {

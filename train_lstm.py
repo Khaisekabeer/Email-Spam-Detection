@@ -87,7 +87,8 @@ if __name__ == "__main__":
     loss, acc = model.evaluate(X_test_pad, y_test)
     print(f"LSTM Accuracy: {acc:.4f}")
     
-    # Save weights only for better cross-version compatibility
-    model.save_weights(os.path.join(MODELS_DIR, 'lstm_weights.weights.h5'))
+    # Save weights as a NumPy list for maximum cross-version compatibility
+    weights = model.get_weights()
+    joblib.dump(weights, os.path.join(MODELS_DIR, 'lstm_weights.joblib'))
     joblib.dump(tokenizer, os.path.join(MODELS_DIR, 'lstm_tokenizer.joblib'))
-    print(f"LSTM model weights and tokenizer saved in '{MODELS_DIR}' directory.")
+    print(f"LSTM raw weights and tokenizer saved in '{MODELS_DIR}' directory.")
