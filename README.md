@@ -1,4 +1,4 @@
-#  | Email Spam Classification System
+#   Email Spam Classification System
 
 A comprehensive, production-ready **Email Spam Detection System** featuring multiple classification models (**Naive Bayes, SVM, and LSTM**) integrated into a premium **Streamlit** web application.
 
