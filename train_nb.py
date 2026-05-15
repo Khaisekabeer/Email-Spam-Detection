@@ -1,3 +1,5 @@
+##TRAIN NB
+
 import os
 import re
 import joblib
